@@ -1,6 +1,6 @@
+import { User } from './../user';
+import { GithubSearchService } from './../github-search.service';
 import { Component, OnInit } from '@angular/core';
-import { GithubSearchService } from '../github-search.service';
-import { User } from '../user';
 
 @Component({
   selector: 'app-git-result',
@@ -8,17 +8,18 @@ import { User } from '../user';
   styleUrls: ['./git-result.component.css']
 })
 export class GitResultComponent implements OnInit {
-  searchGithubServices:GithubSearchService;
+
+  searchGithubService:GithubSearchService;
   user:User;
   repoDetails = [];
-
+  
   constructor(searchGithubService: GithubSearchService) {
-    this.searchGithubServices =searchGithubService
+    this.searchGithubService =searchGithubService
    }
 
-   ngOnInit(){
-    this.user = this.searchGithubServices.user
-    this.repoDetails = this.searchGithubServices.repositoryData
+  ngOnInit(){
+    this.user = this.searchGithubService.user
+    this.repoDetails = this.searchGithubService.repositoryData
   }
 
 }

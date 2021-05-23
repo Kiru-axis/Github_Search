@@ -1,25 +1,24 @@
 import { HttpClient } from '@angular/common/http';
 import { Repository } from './repository';
-import { Injectable } from '@angular/core';
 import { User } from './user';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GithubSearchService {
-  user!: User;
-  repository!:Repository;
+  user:User;  //For getting usernaem
+  repository:Repository; //for the repo
   repositoryData = [];
-  newUserData:any = [];
-  
+  newUserData:any = [] ;
+
 
   constructor (private http:HttpClient) { 
     this.user = new User("", "", "", 0, new Date())
     this.repository = new Repository("", "", new Date, "", "");
   }
-  
-   //fetching userdata
-   getUserData(username:string){
+  //fetching userdat
+  getUserData(username:string){
     interface ApiResponse{
       login:string, 
       avatar_url:string,

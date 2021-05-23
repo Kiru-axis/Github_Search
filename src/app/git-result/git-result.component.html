@@ -9,11 +9,13 @@
                 <p class="lead mt-3 mb-3"><span class="text-info">Public repos: </span> {{user.public_repos}} </p>
             </div>
             <div class="col-md-6">
+                <div *ngFor = "let repoDetail of repoDetails">
                 <h5><span class="text-info">Repository name: </span> {{repoDetail.name}} </h5>
                 <p class="lead mt-3 mb-3"><span class="text-success">Description: </span> {{repoDetail.description}} </p>
                 <p class="lead mt-3 mb-3"><span class="text-success">Updated: </span> {{repoDetail.updated_at | date}} </p>
                 <p class="lead mt-3 mb-3"><span class="text-success">Clone url: </span> {{repoDetail.clone_url}} </p>
-                <p class="lead mt-3 mb-3"><span class="text-success">Languages: </span> {{repoDetail.language}} </p>
+                <p class="lead mt-3 mb-3"><span class="text-success">Languages: </span> {{repoDetail.language}} </p> 
+                </div>
             </div>
         </div>
     </div>
