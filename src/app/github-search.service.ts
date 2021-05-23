@@ -18,7 +18,7 @@ export class GithubSearchService {
     this.repository = new Repository("", "", new Date, "", "");
   }
   
-   //fetching userdat
+   //fetching userdata
    getUserData(username:string){
     interface ApiResponse{
       login:string, 
@@ -29,4 +29,35 @@ export class GithubSearchService {
 
       //username and such
     };
+    let promise = new Promise <void>((reject,resolve) =>{
+      this.http.get<ApiResponse>(" https://api.github.com/users/" + username).toPromise().then(response =>{
+        this.user.login = response.login;
+        this.user.avatar_url = response.avatar_url;
+        this.user.bio = response.bio;
+        this.user.public_repos = response.public_repos;
+        this.user.created_at = response.created_at;
+        
+        resolve();
+      },
+      error =>{
+        reject(error)
+      })
+
+      //repository dat
+      this.http.get<any>(" https://api.github.com/users/" + username + "/repos").toPromise().then(response =>{
+        for(let i = 0; i < response.length; i ++){
+          this.newUserData = new Repository(response[i].name,response[i].descriptin,response[i].updated_at,response[i].clone_url, response[i].language)
+          this.repositoryData.push(this.newUserData)
+        }
+
+        resolve()
+      },error =>{
+        reject(error)
+      }
+      )
+
+    })
+
+    return promise;
+  }
 }
