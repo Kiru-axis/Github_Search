@@ -7,12 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GitFormComponent } from './git-form/git-form.component';
 import { GitResultComponent } from './git-result/git-result.component';
+import { ColorDirective } from './Directives/color.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     GitFormComponent,
-    GitResultComponent
+    GitResultComponent,
+    ColorDirective
   ],
   imports: [
     BrowserModule,
